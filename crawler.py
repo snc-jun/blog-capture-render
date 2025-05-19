@@ -15,12 +15,18 @@ def run_crawler():
     options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/123 Safari/537.36")
 
     try:
+        print("🟡 クローラー起動中...")
         driver = webdriver.Chrome(options=options)
-        driver.get("https://example.com")  # 安定するサイトでテスト
+
+        driver.get("https://example.com")
         time.sleep(2)
-        screenshot_path = os.path.join(SAVE_DIR, "example.png")
-        driver.save_screenshot(screenshot_path)
-        print(f"✅ Screenshot saved to {screenshot_path}")
+
+        filename = "example.png"
+        path = os.path.join(SAVE_DIR, filename)
+        driver.save_screenshot(path)
+        print(f"✅ スクリーンショット保存済み: {path}")
+
         driver.quit()
+
     except Exception as e:
         print(f"❌ クローラーエラー: {e}")
